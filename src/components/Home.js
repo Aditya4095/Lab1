@@ -1,7 +1,7 @@
 // Home.js
 import React, { useEffect } from 'react';
 
-const Home = ({ bannerId, visits, setVisits }) => {
+const Home = ({ visits, setVisits }) => {
 
   useEffect(() => {
     setVisits(visits++);
