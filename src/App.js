@@ -1,12 +1,20 @@
-// App.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Home from './components/Home';
 import About from './components/About';
 import Contact from './components/Contact';
 
 function App() {
-  const [visits, setVisits] = useState(0);
+  const [visits, setVisits] = useState(() => {
+    // Initialize state from local storage
+    const savedVisits = localStorage.getItem('visits');
+    return savedVisits !== null ? parseInt(savedVisits, 10) : 0;
+  });
+
+  useEffect(() => {
+    // Save the visits count to local storage whenever it changes
+    localStorage.setItem('visits', visits);
+  }, [visits]);
 
   return (
     <Router>
@@ -22,9 +30,7 @@ function App() {
         </header>
         <main>
           <Routes>
-            {/* Pass incrementVisits function to Home component */}
-            <Route path="/" element={<Home bannerId="B00896049 " visits={visits} setVisits={setVisits} />} />
-            {/* Pass visits prop directly to About and Contact components */}
+            <Route path="/" element={<Home visits={visits} setVisits={setVisits} />} />
             <Route path="/about" element={<About visits={visits} />} />
             <Route path="/contact" element={<Contact visits={visits} />} />
           </Routes>

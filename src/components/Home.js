@@ -1,17 +1,20 @@
-// Home.js
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const Home = ({ visits, setVisits }) => {
+  const isFirstVisit = useRef(true);
 
   useEffect(() => {
-    setVisits(visits + 1);
-  }, [setVisits, visits]);
+    if (isFirstVisit.current) {
+      setVisits(prevVisits => prevVisits + 1);
+      isFirstVisit.current = false;
+    }
+  }, [setVisits]);
 
   return (
     <div>
       <h1>Welcome to the Home Page</h1>
+      <p>Banner ID:</p>
       <p>Home page visited {visits} times</p>
-      <p>Display your Banner Id: {bannerId}</p>
     </div>
   );
 };
