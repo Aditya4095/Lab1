@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 const Home = ({ visits, setVisits }) => {
 
   useEffect(() => {
-    setVisits(visits++);
+    setVisits(visits + 1);
   }, [setVisits, visits]);
 
   return (
