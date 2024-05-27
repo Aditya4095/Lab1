@@ -13,7 +13,7 @@ const Home = ({ visits, setVisits }) => {
   return (
     <div>
       <h1>Welcome to the Home Page</h1>
-      <p>Banner ID:</p>
+      <p>Banner ID: B00896049</p>
       <p>Home page visited {visits} times</p>
     </div>
   );
